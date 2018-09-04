@@ -1,0 +1,22 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<h1>
+  My shopping cart
+</h1>
+<app-inventory (newLineItem)="processLineItem($event)"></app-inventory>
+
+<div *ngIf="cart.length <=0">Your cart is empty.</div>
+
+<div *ngIf="cart.length > 0">Your cart had {{ cart.length }} items.
+<br>
+<ul>
+  <li *ngFor="let item of cart;">
+      {{ item.label }}, {{ item.quantity }}
+
+      <img src="{{ item.fruitimage }}">
+  </li>
+</ul>
+
+
+
+
+</div>
