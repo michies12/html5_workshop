@@ -1,0 +1,15 @@
+<mat-toolbar color="primary" 
+    fxLayout="row column" fxLayoutGap="2vw">
+  <mat-icon>assignment</mat-icon>
+  <span>Address Book</span>
+</mat-toolbar>
+
+<app-address-entry (newAddress)="processAddress($event)">
+
+</app-address-entry>
+
+<mat-tab-group (selectedTabChange)="loadAddresses($event)">
+  <mat-tab *ngFor="let t of tab" [label]="t.label">
+    Some content here
+  </mat-tab>
+</mat-tab-group>
