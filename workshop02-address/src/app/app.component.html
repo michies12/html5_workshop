@@ -10,6 +10,8 @@
 
 <mat-tab-group (selectedTabChange)="loadAddresses($event)">
   <mat-tab *ngFor="let t of tab" [label]="t.label">
-    Some content here
+      <mat-list role="list">
+          <mat-list-item role="listitem">Item 1</mat-list-item>
+      </mat-list>
   </mat-tab>
 </mat-tab-group>

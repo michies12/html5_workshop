@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Address } from './model';
 import { AddressService } from './address.service';
 import { MatTabChangeEvent } from '@angular/material/tabs';
@@ -10,8 +10,9 @@ import { MatSnackBar } from '@angular/material';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements onInit{
-  title = 'workshop02-address';
+
+export class AppComponent implements OnInit, OnDestroy {
+
   private tab = [
   {label: "A - E", pattern: /^[a-e].*/i}, 
   {label: "F - J", pattern: /^[f-j].*/i},  
@@ -23,7 +24,8 @@ export class AppComponent implements onInit{
   //svc is injected into the component
   constructor(private addressSvc: AddressService,
     public snackBar: MatSnackBar){}
-  ngOnInit(){
+
+    ngOnInit(){
     this.addressSvc.findAddress(this.tab[0].pattern)
     .then(addr=>{
       console.log('initial address: ', addr)
@@ -32,6 +34,9 @@ export class AppComponent implements onInit{
       console.log('error: ', err)
     })
   }
+
+  ngOnDestroy() { }
+
   processAddress(address: Address) {
     console.log("address = ", address);
     this.addressSvc.addNewAddress(address)
@@ -46,8 +51,16 @@ export class AppComponent implements onInit{
     })
   }
 
-  loadAddresses(event: MatTabChangeEvent){
-    const patt = this.tab[event.index].pattern;
-    console.log("event = ", this.tab[event.index].pattern);
-  }
+    loadAddress(event: MatTabChangeEvent) {
+      const patt = this.tab[event.index].pattern;
+      console.log('event: ', patt, typeof(patt))
+      this.addressSvc.findAddress(patt)
+        .then((addr: Address[]) => {
+          console.log('address: ', addr)
+        })
+        .catch(err => {
+          console.error('error: ', err);
+        })
+    }
+
 }

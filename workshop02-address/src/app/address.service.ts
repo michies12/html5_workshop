@@ -20,7 +20,7 @@ export class AddressService{
         return(this.db['contacts'].put(address));
     }
 
-    findAddress(pattern: RegExp): Promise<Address[]>{
+    findAddress(pattern: any): Promise<Address[]>{
         return(
             this.db['contacts']
                 .orderBy('name')

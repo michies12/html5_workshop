@@ -7,6 +7,7 @@ import { MatButtonModule} from "@angular/material/button";
 import { MatIconModule} from "@angular/material/icon";
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatListModule } from '@angular/material/list';
 
 //import the following material modules 
 //to be used in application
@@ -14,7 +15,8 @@ const MODULES=[
     FlexLayoutModule,MatToolbarModule,
     MatFormFieldModule,MatInputModule,
     MatButtonModule,MatIconModule,
-    MatTabsModule,MatSnackBarModule
+    MatTabsModule,MatSnackBarModule,
+    MatListModule
 
 ];
 
