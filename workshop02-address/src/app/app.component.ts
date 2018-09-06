@@ -20,7 +20,8 @@ export class AppComponent implements OnInit, OnDestroy {
   {label: "P - T", pattern: /^[p-t].*/i},
   {label: "U - Z", pattern: /^[u-z].*/i},    
   ]
-
+  currentAddresses: Address[] = [];
+  currentTab = 0; 
   //svc is injected into the component
   constructor(private addressSvc: AddressService,
     public snackBar: MatSnackBar){}
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
     ngOnInit(){
     this.addressSvc.findAddress(this.tab[0].pattern)
     .then(addr=>{
+      this.currentAddresses = addr;
       console.log('initial address: ', addr)
     })
     .catch(err=>{
@@ -42,6 +44,18 @@ export class AppComponent implements OnInit, OnDestroy {
     this.addressSvc.addNewAddress(address)
     .then(result =>{
       console.log("saved: ", result);
+      //todo ensure ......
+      //my code
+      const patt = this.tab[this.currentTab].pattern;
+      this.addressSvc.findAddress(patt)
+        .then((addr: Address[]) => {
+          this.currentAddresses = addr;
+          console.log('address: ', addr)
+        })
+        .catch(err => {
+          console.error('error: ', err);
+        })
+         //my code
       this.snackBar.open("Data saved", "OK", {
         duration: 2000,
       });
@@ -52,10 +66,12 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
     loadAddress(event: MatTabChangeEvent) {
+      this.currentTab = event.index;
       const patt = this.tab[event.index].pattern;
       console.log('event: ', patt, typeof(patt))
       this.addressSvc.findAddress(patt)
         .then((addr: Address[]) => {
+          this.currentAddresses = addr;
           console.log('address: ', addr)
         })
         .catch(err => {

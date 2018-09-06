@@ -8,10 +8,8 @@
 
 </app-address-entry>
 
-<mat-tab-group (selectedTabChange)="loadAddresses($event)">
+<mat-tab-group (selectedTabChange)="loadAddress($event)">
   <mat-tab *ngFor="let t of tab" [label]="t.label">
-      <mat-list role="list">
-          <mat-list-item role="listitem">Item 1</mat-list-item>
-      </mat-list>
+      <app-address-list [addresses]="currentAddresses"></app-address-list>
   </mat-tab>
 </mat-tab-group>
