@@ -1,0 +1,35 @@
+<mat-toolbar color="primary" 
+    fxLayout="row column" fxLayoutGap="2vw">
+
+  <mat-icon>search</mat-icon>
+
+  <span>Starwars</span>
+    <button type="button" name="back" (click) = "back()" 
+    mat-icon-button color="accent">
+    <mat-icon>cancel</mat-icon>
+    </button>
+</mat-toolbar>
+
+
+<form #form = "ngForm" (ngSubmit) = "save()"
+fxLayout="row column" fxLayoutGap="2vw">
+
+<mat-form-field>
+  <input type="number" name="peopleId" 
+  placeholder="Enter 1 to 88" min="1"
+  ngModel matInput required>
+  <mat-hint>Star wars people see <a href="https://swapi.co" target="_blank">swapi.co</a></mat-hint>
+</mat-form-field>
+
+<button type="submit" color="accent" 
+[disabled]="form.invalid" mat-raised-button>
+<mat-icon>add</mat-icon>
+ADD
+</button>
+<button type="button" color="accent" 
+  (click) = "clear()" mat-raised-button>
+<mat-icon>delete</mat-icon>
+CLEAR
+</button>
+
+</form>

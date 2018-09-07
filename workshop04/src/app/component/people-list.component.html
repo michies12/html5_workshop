@@ -1,0 +1,22 @@
+<mat-toolbar color="primary" 
+    fxLayout="row column" fxLayoutGap="2vw">
+
+  <mat-icon>search</mat-icon>
+
+  <span>Starwars</span>
+    <button type="submit" name="submit" (click) = "add()" 
+     mat-icon-button color="accent">
+    <mat-icon>add_circle</mat-icon>
+    </button>
+</mat-toolbar>
+
+
+ 
+<mat-nav-list>
+  <h2 mat-subheader>Characters</h2>
+  <a *ngFor="let p of people"
+    [routerLink]="['/detail', p.id]"
+    mat-list-item>
+    {{ p.name }} ({{ p.id }})
+  </a>
+</mat-nav-list>
