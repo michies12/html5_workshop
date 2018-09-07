@@ -1,0 +1,26 @@
+<mat-toolbar color="primary" 
+    fxLayout="row column" fxLayoutGap="2vw">
+  <mat-icon>star</mat-icon>
+  <span>Starwars</span>
+  <mat-icon>star</mat-icon>
+</mat-toolbar>
+<br><br>
+ 
+{{ people | json }}
+
+ <form #form = "ngForm" (ngSubmit) = "search()"
+    fxLayout="row column" fxLayoutGap="2vw">
+
+    <mat-form-field>
+      <input type="number" name="peopleId" 
+      placeholder="People Id" min="1"
+      ngModel matInput required>
+    </mat-form-field>
+
+    <button type="submit" color="accent" 
+    [disabled]="form.invalid" mat-raised-button>
+    <mat-icon>search</mat-icon>
+    SEARCH
+  </button>
+
+ </form>
